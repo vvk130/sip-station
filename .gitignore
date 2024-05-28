@@ -1,0 +1,41 @@
+# ASP.NET Core specific files
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Staging.json
+appsettings.json
+
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.sln.docstates
+
+# Rider files
+.idea/
+
+# Build directories
+bin/
+obj/
+
+# User-specific files
+*.user
+
+# NuGet packages
+*.nuget.props
+*.paket.props
+*.paket.targets
+packages/
+
+# .NET Core
+project.lock.json
+.project.json.backup
+
+# User secrets file
+secrets.json
+
+# Visual Studio Code
+.vscode/
+
+# Temporary files
+*.tmp
+
