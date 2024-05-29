@@ -4,13 +4,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SipStation;
 
-public partial class KmzgwuhhContext : DbContext
+public partial class postgresContext : DbContext
 {
-    public KmzgwuhhContext()
+
+
+    public postgresContext()
     {
     }
 
-    public KmzgwuhhContext(DbContextOptions<KmzgwuhhContext> options)
+    public postgresContext(DbContextOptions<postgresContext> options)
         : base(options)
     {
     }
@@ -40,9 +42,8 @@ public partial class KmzgwuhhContext : DbContext
     public virtual DbSet<Todo> Todos { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql("DefaultConnection");
+        => optionsBuilder.UseNpgsql(@"Host=localhost;Username=postgres;Database=postgres;Password=password");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

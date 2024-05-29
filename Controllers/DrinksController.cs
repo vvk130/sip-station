@@ -10,12 +10,12 @@ using Microsoft.Extensions.Logging;
 namespace SipStation.Controllers
 {
     [Route("[controller]")]
-    public class DrinkController : Controller
+    public class DrinksController : Controller
     {
-        private readonly ILogger<DrinkController> _logger;
-        private readonly KmzgwuhhContext _context;
+        private readonly ILogger<DrinksController> _logger;
+        private readonly postgresContext _context;
 
-        public DrinkController(ILogger<DrinkController> logger, KmzgwuhhContext context)
+        public DrinksController(ILogger<DrinksController> logger, postgresContext context)
         {
             _logger = logger;
             _context = context;
@@ -33,10 +33,18 @@ namespace SipStation.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Drink>> GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var drinks = _context.Drinks.ToListAsync();
+            var drinks = await _context.Drinks.ToListAsync();
             return Ok(drinks);
+        }
+
+        [HttpGet("id/{drinkId}")]
+        public IActionResult GetProductByIdUsingFromRoute([FromRoute(Name = "drinkId")] int id)
+        {
+            return Ok(_context.Drinks
+                .Where(x => x.Id == id)
+                .FirstOrDefault());
         }
     }
 }

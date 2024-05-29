@@ -11,10 +11,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 // builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<KmzgwuhhContext>(options =>
-{
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+// builder.Services.AddDbContext<postgresContext>();
+
+builder.Services.AddDbContext<postgresContext>(options =>{
+    options.UseNpgsql(@"DefaultConnection");
+    });
 
 var app = builder.Build();
 
