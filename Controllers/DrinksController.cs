@@ -25,10 +25,10 @@ namespace SipStation.Controllers
         [HttpGet]
         public IActionResult Index(int? page)
         {
-        const int pageSize = 8;
-        int pageNumber = page ?? 0; 
-        var drinks = _context.Drinks.OrderBy(b => b.Name)
-                                    .Where(b => b.Id > pageNumber)
+        int pageSize = 8;
+        int lastId = (page ?? 0) * pageSize; 
+        var drinks = _context.Drinks.OrderBy(b => b.Id)
+                                    .Where(b => b.Id > lastId)
                                     .Take(pageSize)
                                     .ToList();
 
